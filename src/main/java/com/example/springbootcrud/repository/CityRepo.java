@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CityRepo extends JpaRepositoryImplementation<City, Long> {
+
+    public City findCityById(Long id);
 }

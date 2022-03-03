@@ -1,6 +1,7 @@
 package com.example.springbootcrud.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +25,9 @@ public class Country {
     @Column(name = "short_code")
     private String shortCode;
 
-
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "country", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("country")
+    private List<City> cities = new ArrayList<>();
 
     public Country() {
     }
@@ -59,6 +62,14 @@ public class Country {
 
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
+    }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 }
 

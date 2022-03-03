@@ -1,8 +1,11 @@
 package com.example.springbootcrud.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "city")
@@ -18,8 +21,9 @@ public class City {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
+    @JsonIgnoreProperties("cities")
     private Country country;
 
     public City() {
@@ -56,4 +60,5 @@ public class City {
     public void setCountry(Country country) {
         this.country = country;
     }
+
 }

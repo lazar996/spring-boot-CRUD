@@ -17,4 +17,11 @@ public class CityService {
 
         return cityRepo.findAll();
     }
+    public void deleteById(Long id){
+        cityRepo.deleteById(id);
+    }
+
+    public City getCityById(Long id){
+        return cityRepo.findCityById(id);
+    }
 }

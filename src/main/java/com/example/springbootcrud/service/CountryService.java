@@ -17,4 +17,22 @@ public class CountryService {
 
         return  countryRepo.findAll();
     }
+
+    public Country getCountryById(Long id){
+        return countryRepo.findCountryById(id);
+    }
+
+    public Country createCountry(Country country){
+
+        return countryRepo.save(country);
+    }
+
+    public Country updateCountry(Country country){
+        return countryRepo.save(country);
+    }
+
+    public void deleteCountry(Long id){
+
+        countryRepo.deleteById(id);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.springbootcrud.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "address")
 public class Address {
 
     @Id
