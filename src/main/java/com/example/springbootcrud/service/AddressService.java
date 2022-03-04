@@ -22,4 +22,6 @@ public class AddressService {
     public Address getAddressById(Long id){
        return addressRepo.findAddressById(id);
     }
+
+    public void deleteAddressById(Long id){ addressRepo.deleteById(id);}
 }

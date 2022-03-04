@@ -1,11 +1,10 @@
 package com.example.springbootcrud.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "city")
@@ -21,10 +20,14 @@ public class City {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
-    @JsonIgnoreProperties("cities")
     private Country country;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "city",cascade = CascadeType.ALL)
+    private List<Address> addresses= new ArrayList<>();
 
     public City() {
     }

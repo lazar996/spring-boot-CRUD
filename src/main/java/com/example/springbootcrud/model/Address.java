@@ -1,4 +1,5 @@
 package com.example.springbootcrud.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -16,17 +17,15 @@ public class Address {
     @Column
     private Integer number;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
     private City city;
 
     public  Address(){
-
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
     public void setId(Long id) {
         this.id = id;
@@ -48,9 +47,7 @@ public class Address {
         this.number = number;
     }
 
-    public City getCity() {
-        return city;
-    }
+    public City getCity() {return city;}
 
     public void setCity(City city) {
         this.city = city;

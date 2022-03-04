@@ -6,6 +6,7 @@ import com.example.springbootcrud.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,13 @@ public class AddressController {
     public ResponseEntity<Address> getAddressById(@PathVariable(value = "id")Long id){
 
         return new ResponseEntity<Address>(this.addressService.getAddressById(id),HttpStatus.OK);
+    }
+
+    @DeleteMapping("api/address/{id}")
+    public ResponseEntity<Address> deleteAddressById(@PathVariable("id") Long id){
+
+        addressService.deleteAddressById(id);
+        return new ResponseEntity<Address>(HttpStatus.OK);
     }
 
 }

@@ -1,8 +1,6 @@
 package com.example.springbootcrud.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "country" )
 public class Country {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +22,8 @@ public class Country {
     @Column(name = "short_code")
     private String shortCode;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "country", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("country")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = CascadeType.ALL)
     private List<City> cities = new ArrayList<>();
 
     public Country() {
@@ -71,5 +68,6 @@ public class Country {
     public void setCities(List<City> cities) {
         this.cities = cities;
     }
+
 }
 

@@ -12,13 +12,11 @@ import java.util.List;
 @RestController
 public class CountryController {
 
-
     @Autowired
     CountryService countryService;
 
     @GetMapping(value = "api/country")
     public ResponseEntity<?>getAllCountry(){
-
         return new ResponseEntity<List<Country>>(this.countryService.getAllCountry(), HttpStatus.OK);
     }
 
