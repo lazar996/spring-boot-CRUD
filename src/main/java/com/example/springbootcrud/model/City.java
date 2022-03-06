@@ -22,7 +22,7 @@ public class City {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
     @JsonIgnore
@@ -30,6 +30,14 @@ public class City {
     private List<Address> addresses= new ArrayList<>();
 
     public City() {
+    }
+
+    public City(Long id, String name, String postalCode, Country country, List<Address> addresses) {
+        this.id = id;
+        this.name = name;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.addresses = addresses;
     }
 
     public Long getId() {
@@ -64,4 +72,11 @@ public class City {
         this.country = country;
     }
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 }

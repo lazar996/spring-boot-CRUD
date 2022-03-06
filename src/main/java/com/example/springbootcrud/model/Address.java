@@ -17,12 +17,20 @@ public class Address {
     @Column
     private Integer number;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
+
     public  Address(){
+    }
+
+    public Address(Long id, String street, Integer number, City city) {
+        this.id = id;
+        this.street = street;
+        this.number = number;
+        this.city = city;
     }
 
     public Long getId() {return id;}
@@ -51,5 +59,8 @@ public class Address {
 
     public void setCity(City city) {
         this.city = city;
+        if (city!=null && !city.getAddresses().contains(this)){
+            city.getAddresses().add(this);
+        }
     }
 }

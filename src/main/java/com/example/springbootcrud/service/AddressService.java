@@ -24,4 +24,8 @@ public class AddressService {
     }
 
     public void deleteAddressById(Long id){ addressRepo.deleteById(id);}
+
+    public Address createAddress(Address address){
+        return addressRepo.save(address);
+    }
 }
