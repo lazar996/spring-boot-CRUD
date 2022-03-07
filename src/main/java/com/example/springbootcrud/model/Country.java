@@ -26,6 +26,10 @@ public class Country {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = CascadeType.ALL)
     private List<City> cities = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "capital_id" , nullable = true)
+    private City capital;
+
     public Country() {
     }
 
@@ -69,6 +73,13 @@ public class Country {
         this.cities = cities;
     }
 
+    public City getCapital() {
+        return capital;
+    }
+
+    public void setCapital(City capital) {
+        this.capital = capital;
+    }
 
     @Override
     public String toString() {
@@ -78,6 +89,7 @@ public class Country {
                 ", flagUrl='" + flagUrl + '\'' +
                 ", shortCode='" + shortCode + '\'' +
                 ", cities=" + cities +
+                ", capital=" + capital +
                 '}';
     }
 }

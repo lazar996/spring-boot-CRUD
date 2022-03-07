@@ -29,6 +29,8 @@ public class City {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "city",cascade = CascadeType.ALL)
     private List<Address> addresses= new ArrayList<>();
 
+
+
     public City() {
     }
 
@@ -79,4 +81,6 @@ public class City {
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+
+
 }

@@ -1,8 +1,10 @@
 package com.example.springbootcrud.service;
 
+import com.example.springbootcrud.dto.AddressDTO;
 import com.example.springbootcrud.model.Address;
 import com.example.springbootcrud.model.City;
 import com.example.springbootcrud.repository.AddressRepo;
+import com.example.springbootcrud.repository.CityRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class AddressService {
 
     @Autowired
     AddressRepo addressRepo;
+
+    @Autowired
+    CityRepo cityRepo;
 
     public List<Address> getAddress(){
 
@@ -25,7 +30,14 @@ public class AddressService {
 
     public void deleteAddressById(Long id){ addressRepo.deleteById(id);}
 
-    public Address createAddress(Address address){
+    public Address createAddress(AddressDTO addressDTO){
+
+        City city = cityRepo.findCityById(addressDTO.getCity_id());
+        Address address = new Address();
+        address.setStreet(addressDTO.getStreet());
+        address.setNumber(addressDTO.getNumber());
+        address.setCity(city);
+
         return addressRepo.save(address);
     }
 }

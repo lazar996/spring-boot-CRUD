@@ -1,5 +1,6 @@
 package com.example.springbootcrud.controller;
 
+import com.example.springbootcrud.dto.AddressDTO;
 import com.example.springbootcrud.model.Address;
 import com.example.springbootcrud.model.City;
 import com.example.springbootcrud.service.AddressService;
@@ -29,8 +30,8 @@ public class AddressController {
     }
 
     @PostMapping(value = "api/address")
-    public ResponseEntity<Address> createAddress(@RequestBody Address address){
-        return  new ResponseEntity<Address>(this.addressService.createAddress(address),HttpStatus.CREATED);
+    public ResponseEntity<Address> createAddress(@RequestBody AddressDTO addressDTO){
+        return  new ResponseEntity<Address>(this.addressService.createAddress(addressDTO),HttpStatus.CREATED);
     }
     @DeleteMapping("api/address/{id}")
     public ResponseEntity<Address> deleteAddressById(@PathVariable("id") Long id){

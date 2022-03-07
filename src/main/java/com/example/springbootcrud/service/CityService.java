@@ -32,14 +32,12 @@ public class CityService {
     }
 
     public City createCity(CityDTO cityDTO){
-        Country country = countryRepo.getById(cityDTO.getCountry_id());
 
-        System.out.println(country);
+        Country country = countryRepo.getById(cityDTO.getCountry_id());
         City city = new City();
         city.setName(cityDTO.getName());
         city.setPostalCode(cityDTO.getPostalCode());
         city.setCountry(country);
-
 
         return cityRepo.save(city);
     }

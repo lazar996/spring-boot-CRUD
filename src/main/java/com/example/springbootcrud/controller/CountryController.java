@@ -1,5 +1,6 @@
 package com.example.springbootcrud.controller;
 
+import com.example.springbootcrud.dto.CountryDTO;
 import com.example.springbootcrud.model.Country;
 import com.example.springbootcrud.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class CountryController {
     }
 
     @PostMapping(value = "api/country")
-    public ResponseEntity<Country> createCountry(@RequestBody Country country){
+    public ResponseEntity<Country> createCountry(@RequestBody CountryDTO countryDTO){
 
-        return new ResponseEntity<Country>(this.countryService.createCountry(country),HttpStatus.CREATED);
+        return new ResponseEntity<Country>(this.countryService.createCountry(countryDTO),HttpStatus.CREATED);
     }
     @PutMapping(value = "api/country")
     public ResponseEntity<Country> updateCountry(@RequestBody Country country){

@@ -1,6 +1,9 @@
 package com.example.springbootcrud.service;
 
+import com.example.springbootcrud.dto.CountryDTO;
+import com.example.springbootcrud.model.City;
 import com.example.springbootcrud.model.Country;
+import com.example.springbootcrud.repository.CityRepo;
 import com.example.springbootcrud.repository.CountryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,9 @@ public class CountryService {
     @Autowired
     CountryRepo countryRepo;
 
+    @Autowired
+    CityRepo cityRepo;
+
     public List<Country> getAllCountry(){
 
         return  countryRepo.findAll();
@@ -22,7 +28,15 @@ public class CountryService {
         return countryRepo.findCountryById(id);
     }
 
-    public Country createCountry(Country country){
+    public Country createCountry(CountryDTO countryDTO){
+
+        City city = cityRepo.findCityById(countryDTO.getCapital());
+
+        Country country = new Country();
+        country.setName(countryDTO.getName());
+        country.setFlagUrl(countryDTO.getFlagUrl());
+        country.setShortCode(countryDTO.getShortCode());
+        country.setCapital(city);
 
         return countryRepo.save(country);
     }

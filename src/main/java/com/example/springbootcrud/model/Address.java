@@ -59,8 +59,15 @@ public class Address {
 
     public void setCity(City city) {
         this.city = city;
-        if (city!=null && !city.getAddresses().contains(this)){
-            city.getAddresses().add(this);
-        }
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", number=" + number +
+                ", city=" + city +
+                '}';
     }
 }
