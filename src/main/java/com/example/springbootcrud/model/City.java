@@ -30,7 +30,6 @@ public class City {
     private List<Address> addresses= new ArrayList<>();
 
 
-
     public City() {
     }
 

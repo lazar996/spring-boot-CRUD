@@ -2,7 +2,6 @@ package com.example.springbootcrud.controller;
 
 import com.example.springbootcrud.dto.AddressDTO;
 import com.example.springbootcrud.model.Address;
-import com.example.springbootcrud.model.City;
 import com.example.springbootcrud.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

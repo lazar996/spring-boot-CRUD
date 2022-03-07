@@ -26,8 +26,9 @@ public class Country {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "country", cascade = CascadeType.ALL)
     private List<City> cities = new ArrayList<>();
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "capital_id" , nullable = true)
+    @JoinColumn(name = "capital_id" ,unique = true)
     private City capital;
 
     public Country() {
