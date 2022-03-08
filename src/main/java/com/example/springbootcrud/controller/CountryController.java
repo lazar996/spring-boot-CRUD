@@ -9,12 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class CountryController {
 
     @Autowired
     CountryService countryService;
+
 
     @GetMapping(value = "api/country")
     public ResponseEntity<?>getAllCountry(){
