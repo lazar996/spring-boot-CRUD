@@ -22,4 +22,6 @@ public class UserCountryController {
 
         return  new ResponseEntity<List<UserCountry>>(this.userCountryService.getAllUserCountryAddress(), HttpStatus.OK);
     }
+
+
 }

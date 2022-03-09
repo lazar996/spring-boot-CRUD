@@ -41,7 +41,14 @@ public class CountryService {
         return countryRepo.save(country);
     }
 
-    public Country updateCountry(Country country){
+    public Country updateCountry(CountryDTO countryDTO,Long id){
+         Country country = countryRepo.findCountryById(id);
+         City city = cityRepo.getById(country.getCapital().getId());
+
+         country.setFlagUrl(countryDTO.getFlagUrl());
+         country.setName(countryDTO.getName());
+         country.setShortCode(countryDTO.getShortCode());
+         country.setCapital(city);
         return countryRepo.save(country);
     }
 

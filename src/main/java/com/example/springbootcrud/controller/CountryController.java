@@ -32,10 +32,14 @@ public class CountryController {
 
         return new ResponseEntity<Country>(this.countryService.createCountry(countryDTO),HttpStatus.CREATED);
     }
-    @PutMapping(value = "api/country")
-    public ResponseEntity<Country> updateCountry(@RequestBody Country country){
+    @PutMapping(value = "api/country/{id}")
+    public ResponseEntity<Country> updateCountry(@RequestBody CountryDTO countryDTO, @PathVariable(value = "id")Long id){
+        if (countryDTO.getId()==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Country updateCountry = countryService.updateCountry(countryDTO,id);
 
-        return new ResponseEntity<Country>(this.countryService.updateCountry(country),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(updateCountry,HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(value = "api/country/{id}")

@@ -38,5 +38,13 @@ public class AddressController {
         addressService.deleteAddressById(id);
         return new ResponseEntity<Address>(HttpStatus.OK);
     }
+    @PutMapping(value = "api/address/{id}")
+    public ResponseEntity<Address> editAddress(@RequestBody AddressDTO addressDTO, @PathVariable(value = "id") Long id){
+        if (addressDTO.getId()==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Address updateAddress = addressService.updateAddress(addressDTO, id);
+        return new ResponseEntity<>(updateAddress,HttpStatus.OK);
+    }
 
 }

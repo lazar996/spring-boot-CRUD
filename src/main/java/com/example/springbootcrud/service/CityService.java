@@ -41,4 +41,15 @@ public class CityService {
 
         return cityRepo.save(city);
     }
+
+    public City updateCity(CityDTO cityDTO, Long id){
+
+        City city = cityRepo.findCityById(id);
+        Country country = countryRepo.getById(city.getCountry().getId());
+        city.setName(cityDTO.getName());
+        city.setPostalCode(cityDTO.getPostalCode());
+        city.setCountry(country);
+
+        return cityRepo.save(city);
+    }
 }

@@ -35,5 +35,16 @@ public class CityController {
         cityService.deleteById(id);
         return new ResponseEntity<City>(HttpStatus.OK);
     }
+    @PutMapping(value = "api/city/{id}")
+    public ResponseEntity<City> editCity(@RequestBody CityDTO cityDTO, @PathVariable(value = "id") Long id){
+
+        if(cityDTO.getId() == null){
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        City updateCity = cityService.updateCity(cityDTO, id);
+
+        return new ResponseEntity<>(updateCity,HttpStatus.OK);
+    }
 
 }

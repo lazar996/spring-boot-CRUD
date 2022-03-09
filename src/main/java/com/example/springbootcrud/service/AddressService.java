@@ -40,4 +40,16 @@ public class AddressService {
 
         return addressRepo.save(address);
     }
+
+    public Address updateAddress(AddressDTO addressDTO, Long id){
+
+        Address address = addressRepo.findAddressById(id);
+        City city = cityRepo.findCityById(address.getCity().getId());
+        address.setStreet(addressDTO.getStreet());
+        address.setNumber(addressDTO.getNumber());
+        address.setCity(city);
+
+        return addressRepo.save(address);
+
+    }
 }
